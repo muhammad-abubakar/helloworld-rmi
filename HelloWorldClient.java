@@ -14,7 +14,7 @@ public class HelloWorldClient {
 	 * @throws NotBoundException 
 	 */
 	private static String HOST = "localhost";
-	private static  int PORT_NO = 1099; 
+	private static  int PORT_NO = 2211; 
 	private static final String RMI_ID = "HelloWorld";
 	private static String message = "Hello, How Are you?";
 
@@ -32,7 +32,10 @@ public class HelloWorldClient {
 				
 			}
 		}
-		Registry registry = LocateRegistry.getRegistry("ec2-54-224-236-43.compute-1.amazonaws.com", PORT_NO);
+		if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new SecurityManager());
+        }
+		Registry registry = LocateRegistry.getRegistry();
 		HelloWorldInterface remote = (HelloWorldInterface) registry.lookup(RMI_ID);
 	    System.out.println("Server: " + remote.greetings(message));
 	}

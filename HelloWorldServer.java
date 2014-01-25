@@ -24,6 +24,8 @@ public class HelloWorldServer {
 				
 			}
 		}
+		
+//		System.setProperty("java.security.policy","/server.policy");
 		if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
         }
