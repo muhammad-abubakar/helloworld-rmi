@@ -24,10 +24,12 @@ public class HelloWorldServer {
 				
 			}
 		}
-			
+		if (System.getSecurityManager() == null) {
+            System.setSecurityManager(new SecurityManager());
+        }
 		HelloWorld helloWorld = new HelloWorld(); 
-		Registry registory = LocateRegistry.createRegistry(PORT_NO);
-	    registory.bind(RMI_ID, helloWorld);	
+		Registry registory = LocateRegistry.getRegistry();
+	    registory.rebind(RMI_ID, helloWorld);	
 	    System.out.println("Listening");
 	}
 

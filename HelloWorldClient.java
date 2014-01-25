@@ -1,5 +1,6 @@
 
 import java.rmi.NotBoundException;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -31,7 +32,6 @@ public class HelloWorldClient {
 				
 			}
 		}
-		
 		Registry registry = LocateRegistry.getRegistry("ec2-54-224-236-43.compute-1.amazonaws.com", PORT_NO);
 		HelloWorldInterface remote = (HelloWorldInterface) registry.lookup(RMI_ID);
 	    System.out.println("Server: " + remote.greetings(message));
