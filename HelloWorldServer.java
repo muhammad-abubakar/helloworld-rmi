@@ -2,6 +2,7 @@ import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 
 public class HelloWorldServer {
@@ -13,7 +14,7 @@ public class HelloWorldServer {
 	 * @throws RemoteException 
 	 * @throws AlreadyBoundException 
 	 */
-	public static void main(String[] args) throws RemoteException, AlreadyBoundException {
+	public static void main(String[] args){
 		// TODO Auto-generated method stub
 		if(args.length > 1)
 		{ 
@@ -29,10 +30,20 @@ public class HelloWorldServer {
 		if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
         }
-		HelloWorld helloWorld = new HelloWorld(); 
-		Registry registory = LocateRegistry.getRegistry();
-	    registory.rebind(RMI_ID, helloWorld);	
-	    System.out.println("Listening");
-	}
+		  String name = "HelloWorldInterface";
+          HelloWorldInterface engine;
+		try {
+			engine = new HelloWorld();
+		
+          HelloWorldInterface stub =
+              (HelloWorldInterface) UnicastRemoteObject.exportObject(engine, 0);
+          Registry registry = LocateRegistry.getRegistry();
+          registry.rebind(name, stub);
+          System.out.println("ComputeEngine bound");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 
 }

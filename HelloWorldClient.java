@@ -19,7 +19,7 @@ public class HelloWorldClient {
 	private static String message = "Hello, How Are you?";
 
 	
-	public static void main(String[] args) throws RemoteException, NotBoundException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		if(args.length > 1)
 		{ 
@@ -35,9 +35,17 @@ public class HelloWorldClient {
 		if (System.getSecurityManager() == null) {
             System.setSecurityManager(new SecurityManager());
         }
-		Registry registry = LocateRegistry.getRegistry();
-		HelloWorldInterface remote = (HelloWorldInterface) registry.lookup(RMI_ID);
+		 String name = "HelloWorldInterface";
+		Registry registry;
+		try {
+			registry = LocateRegistry.getRegistry("10.142.156.149", PORT_NO);
+		
+		HelloWorldInterface remote = (HelloWorldInterface) registry.lookup(name);
 	    System.out.println("Server: " + remote.greetings(message));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
