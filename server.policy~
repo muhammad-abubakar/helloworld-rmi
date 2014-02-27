@@ -1,0 +1,3 @@
+grant codeBase "file:///home/abubakar/Seasons/Cloud/Assignments/HelloWorld/src" {
+    permission java.security.AllPermission;
+}
