@@ -1,0 +1,4 @@
+grant codeBase "file:///home/aqadeer/javaworkspace/RMIHelloWorldServer/src/" {
+	permission java.security.AllPermission;
+};
+
