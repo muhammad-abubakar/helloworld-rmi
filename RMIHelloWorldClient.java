@@ -15,7 +15,7 @@ public class RMIHelloWorldClient {
 		//step 1: Locate rmi registry
 		Registry registry = null;
 		try {
-			registry = LocateRegistry.getRegistry("ec2-54-224-170-185.compute-1.amazonaws.com");
+			registry = LocateRegistry.getRegistry("ec2-54-198-195-157.compute-1.amazonaws.com");
 		} catch (RemoteException e) {
 			System.err.println("Failed to locate rmi registry. Dieing...");
 			System.exit(-1);
